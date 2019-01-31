@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/kgoval/erresp"
-	"github.com/kgoval/valueid-auth/protogen"
+	"github.com/kgoval/valueid-membership/protogen"
 	"github.com/kgoval/valueid-auth/servers"
 	"github.com/pkg/errors"
 )
@@ -22,7 +22,7 @@ func Register( server *servers.Server) *TokenApp{
 	return token
 }
 
-func (c *TokenApp) Token(){
+func (c *TokenApp) Token(ctx context.Context){
 
 	// just try to return data from membership
 	resp, err := c.servers.Member.Detail(context.Background(), &member.MemberDetailRequest{

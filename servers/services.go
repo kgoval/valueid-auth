@@ -1,7 +1,7 @@
 package servers
 
 import (
-	"github.com/kgoval/valueid-auth/protogen"
+	"github.com/kgoval/valueid-membership/protogen"
 	"github.com/micro/go-micro/client"
 )
 

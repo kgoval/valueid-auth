@@ -5,11 +5,12 @@ import (
 	"github.com/kgoval/envparser"
 	"github.com/kgoval/erresp"
 	"github.com/kgoval/valueid-auth/boot"
-	"github.com/kgoval/valueid-auth/login"
+	"github.com/kgoval/valueid-auth/handler"
 	"github.com/kgoval/valueid-auth/servers"
 	local "github.com/micro/go-grpc"
 	"github.com/micro/go-micro"
 	k8s "github.com/micro/kubernetes/go/micro"
+	"log"
 	"strings"
 
 	//"github.com/micro/go-micro"
@@ -42,15 +43,12 @@ func main(){
 	service.Init(
 		micro.Name(boot.Config.ServiceName), )
 
-	//handler.Register(service.Server())
+	handler.Register(service.Server())
 	servers.Register(service.Client())
 
 	fmt.Println("running..")
-	//if err := service.Run(); err != nil {
-	//	log.Fatal(err)
-	//}
-
-	l := login.Register(&servers.Servers)
-	l.Token()
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 
 }

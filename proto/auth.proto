@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service AuthService {
+    rpc Token (Empty) returns (AuthTokenResponse);
+}
+
+message Empty {
+
+}
+
+message AuthTokenResponse {
+    string access_token = 1;
+}
